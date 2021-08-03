@@ -12,7 +12,10 @@
 > 😥 Do not like laravel mix ?
 > 
 > :white_check_mark: You can Link up **CSS** and **JS** manually
-
+> 
+> 👽 Thinking about file handling process in backend ?
+> 
+> ✌ Do it yourself however i prefer [**Spatie Media Library**](https://spatie.be/index.php/docs/laravel-medialibrary/v9/introduction)
 
 #### Feel free to contribute. Cheers ... 🍻
 
