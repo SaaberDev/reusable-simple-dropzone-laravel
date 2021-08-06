@@ -4,7 +4,7 @@
     Dropzone.options.singleMediaDropzone = {
         url: "{{ $store }}",
         maxFilesize: '{{ $maxFilesize }}', // MB
-        maxFiles: 1,
+        maxFiles: '{{ $maxFiles }}',
         uploadMultiple: false,
         acceptedFiles: '{{ $acceptedFiles }}',
         addRemoveLinks: true,
