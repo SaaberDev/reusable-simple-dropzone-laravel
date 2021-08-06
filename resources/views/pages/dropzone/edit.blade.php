@@ -130,6 +130,7 @@
     'delete' => route('deleteMedia'),
     'model' => $services, // your model name for query
     'maxFilesize' => 2,
+    'maxFiles' => 1,
     'acceptedFiles' => 'image/jpeg, image/png',
 ])
 @include('plugins.dropzone.edit.multiple', [
