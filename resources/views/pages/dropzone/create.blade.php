@@ -127,6 +127,7 @@
     'store' => route('storeMedia'),
     'delete' => route('deleteMedia'),
     'maxFilesize' => 2,
+    'maxFiles' => 1,
     'acceptedFiles' => 'image/jpeg, image/png',
 ])
 
