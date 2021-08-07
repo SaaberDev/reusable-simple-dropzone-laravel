@@ -41,8 +41,8 @@ class ServiceController extends Controller
     public function destroyMedia(Dropzone $dropzone, Request $request): JsonResponse
     {
         if ($request->input('single_media')) {
-            return $dropzone->deleteMedia('single_media', 'uuid');
+            return $dropzone->deleteMedia(Media::class,'single_media', 'uuid', 'spatie');
         }
-        return $dropzone->deleteMedia('multiple_media', 'uuid');
+        return $dropzone->deleteMedia(Media::class,'multiple_media', 'uuid', 'spatie');
     }
 }
