@@ -55,21 +55,27 @@
         }
 
         /**
-         * @param $mediaKey
-         * @param $mediaUuid
+         * @param $model
+         * @param $requestInput
+         * @param $mediaId
+         * @param null $library
          * @return JsonResponse
          */
-        public function deleteMedia($mediaKey, $mediaUuid): JsonResponse
+        public function deleteMedia($model, $requestInput, $mediaId, $library = null): JsonResponse
         {
-            $photo = $this->request->get($mediaKey);
-            $uuid = $this->request->get($mediaUuid);
+            $file = $this->request->get($requestInput);
+            $id = $this->request->get($mediaId);
 
-            if (!$uuid) {
-                if (\Storage::disk('tmp')->exists('uploads/' .$photo)) {
-                    \Storage::disk('tmp')->delete('uploads/' . $photo);
+            if (!$id) {
+                if (\Storage::disk('tmp')->exists('uploads/' . $file)) {
+                    \Storage::disk('tmp')->delete('uploads/' . $file);
                 }
             } else {
-                Media::findByUuid($uuid)->delete();
+                if ($library === 'spatie') {
+                    $model::findByUuid($id)->delete();
+                } else {
+                    $model::findOrFail($id)->delete();
+                }
             }
 
             return response()->json();
