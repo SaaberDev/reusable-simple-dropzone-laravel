@@ -124,6 +124,8 @@
 <script src="{{ mix('_assets/plugins/dropzone/js/dropzone.js') }}"></script>
 {{-- Dropzone Single Upload --}}
 @include('plugins.dropzone.create.single', [
+    'dropzone' => Str::camel('single-media-dropzone'),
+    'fileInputName' => 'single_media',
     'store' => route('storeMedia'),
     'delete' => route('deleteMedia'),
     'maxFilesize' => 2,
@@ -133,6 +135,8 @@
 
 {{-- Dropzone Multiple Upload --}}
 @include('plugins.dropzone.create.multiple', [
+    'dropzone' => Str::camel('multiple-media-dropzone'),
+    'fileInputName' => 'multiple_media',
     'store' => route('storeMedia'),
     'delete' => route('deleteMedia'),
     'maxFilesize' => 2,

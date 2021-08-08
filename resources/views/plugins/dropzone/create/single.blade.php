@@ -1,6 +1,6 @@
 <script>
     var singleUploadMap = {}
-    Dropzone.options.singleMediaDropzone = {
+    Dropzone.options.{{ $dropzone }} = {
         url: "{{ $store }}",
         maxFilesize: '{{ $maxFilesize }}', // MB
         maxFiles: '{{ $maxFiles }}',
@@ -23,7 +23,7 @@
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },
         success: function (file, response) {
-            $('form').append('<input type="hidden" name="single_media" value="' + response.name + '">')
+            $('form').append('<input type="hidden" name="{{ $fileInputName }}" value="' + response.name + '">')
             singleUploadMap[file.name] = response.name
         },
         removedfile: function (file) {
@@ -34,7 +34,7 @@
             } else {
                 name = singleUploadMap[file.name]
             }
-            $('form').find('input[name="single_media"][value="' + name + '"]').remove()
+            $('form').find('input[name="{{ $fileInputName }}"][value="' + name + '"]').remove()
 
             $.ajaxSetup({
                 headers: {
@@ -45,7 +45,7 @@
                 type: 'DELETE',
                 url: "{{ $delete }}",
                 data: {
-                    single_media: name,
+                    {{ $fileInputName }}: name,
                 },
             });
         }

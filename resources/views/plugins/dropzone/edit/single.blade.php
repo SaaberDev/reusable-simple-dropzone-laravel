@@ -1,7 +1,7 @@
 <script>
     // Dropzone Service Thumb
     var singleUploadMap = {}
-    Dropzone.options.singleMediaDropzone = {
+    Dropzone.options.{{ $dropzone }} = {
         url: "{{ $store }}",
         maxFilesize: '{{ $maxFilesize }}', // MB
         maxFiles: '{{ $maxFiles }}',
@@ -21,7 +21,7 @@
                 type: 'get',
                 url: "{{ $get }}",
                 data: {
-                    request: 'singleUploader',
+                    request: '{{ $getRequestParam }}',
                     id: '{{ $model->id }}'
                 },
                 dataType: 'json',
@@ -39,7 +39,7 @@
                         // myDropzone.options.addedfile.call(myDropzone, mockFile);
                         $('.dz-image').find('img').addClass('dz-thumb');
 
-                        $('form').append('<input type="hidden" name="single_media" value="' + value.file_name + '">');
+                        $('form').append('<input type="hidden" name="{{ $fileInputName}}" value="' + value.file_name + '">');
 
                         // myDropzone.options.thumbnail.call(myDropzone, mockFile, value.original_url);
 
@@ -57,7 +57,7 @@
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },
         success: function (file, response) {
-            $('form').append('<input type="hidden" name="single_media" value="' + response.name + '">')
+            $('form').append('<input type="hidden" name="{{ $fileInputName}}" value="' + response.name + '">')
             singleUploadMap[file.name] = response.name
         },
         removedfile: function (file) {
@@ -85,12 +85,12 @@
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                             },
                             data: {
-                                single_media: file.name,
+                                {{ $fileInputName }}: file.name,
                                 uuid: file.id
                             },
                             success:function(response) {
                                 file.previewElement.remove()
-                                $('form').find('input[name="single_media"][value="' + name + '"]').remove()
+                                $('form').find('input[name="{{ $fileInputName }}"][value="' + name + '"]').remove()
                                 // myDropzone.options.maxFiles = 1;
                                 window.location.reload()
                             }
@@ -102,7 +102,7 @@
                 name = singleUploadMap[file.name];
 
                 file.previewElement.remove();
-                $('form').find('input[name="single_media"][value="' + name + '"]').remove();
+                $('form').find('input[name="{{ $fileInputName }}"][value="' + name + '"]').remove();
                 // Delete preview from filesystem - ajax
                 $.ajax({
                     type: 'DELETE',
@@ -111,7 +111,7 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     },
                     data: {
-                        single_media: name
+                        {{ $fileInputName }}: name
                     },
                 });
             }

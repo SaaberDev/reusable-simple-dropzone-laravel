@@ -19,7 +19,7 @@
                 type: 'get',
                 url: "{{ $get }}",
                 data: {
-                    request: 'multipleUploader',
+                    request: '{{ $getRequestParam }}',
                     id: '{{ $model->id }}'
                 },
                 dataType: 'json',

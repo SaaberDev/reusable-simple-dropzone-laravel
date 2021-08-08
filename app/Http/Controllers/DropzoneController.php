@@ -9,12 +9,23 @@ use Illuminate\Http\JsonResponse;
 class ServiceController extends Controller
 {
     /**
+     * --------------------------------------------------------------------
+     *                              NOTICE
+     * --------------------------------------------------------------------
+     *
+     * This is a demo controller to demonstrate the example,
+     * how you should call your methods for dropzone routes.
+     * Please make sure to modify according to your system logic if needed.
+     */
+
+    /**
      * @param Dropzone $dropzone
      * @param Request $request
      * @return JsonResponse|void
      */
     public function getMedia(Dropzone $dropzone, Request $request)
     {
+        // 'request' is the parameter which is coming from the ajax response
         if ($request->get('request') === 'singleUploader') {
             return $dropzone->getMedia(Service::class,'service_thumb', 'id');
         }

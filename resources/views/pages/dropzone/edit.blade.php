@@ -125,19 +125,26 @@
 {{-- Internal Scripts --}}
 <script src="{{ mix('_assets/plugins/dropzone/js/dropzone.js') }}"></script>
 @include('plugins.dropzone.edit.single', [
-    'get' => route('getMedia'),
-    'store' => route('storeMedia'),
-    'delete' => route('deleteMedia'),
-    'model' => $services, // your model name for query
-    'maxFilesize' => 2,
-    'maxFiles' => 1,
-    'acceptedFiles' => 'image/jpeg, image/png',
-])
+        'dropzone' => Str::camel('single-media-dropzone'), // dropzone div id
+        'getRequestParam' => 'service_thumb',
+        'fileInputName' => 'single_media',
+        'get' => route('getMedia'),
+        'store' => route('storeMedia'),
+        'delete' => route('deleteMedia'),
+        'model' => $service, // your model name for query
+        'maxFilesize' => 2,
+        'maxFiles' => 1,
+        'acceptedFiles' => 'image/jpeg, image/png',
+    ])
+
 @include('plugins.dropzone.edit.multiple', [
+    'dropzone' => Str::camel('multiple-media-dropzone'), // dropzone div id
+    'getRequestParam' => 'service',
+    'fileInputName' => 'multiple_media',
     'get' => route('getMedia'),
     'store' => route('storeMedia'),
     'delete' => route('deleteMedia'),
-    'model' => $services, // your model name for query
+    'model' => $service, // your model name for query
     'maxFilesize' => 2,
     'acceptedFiles' => 'image/jpeg, image/png',
 ])

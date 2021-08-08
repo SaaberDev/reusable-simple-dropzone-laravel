@@ -15,7 +15,7 @@
     };
 
     var multipleUploadMap = {}
-    Dropzone.options.multipleMediaDropzone = {
+    Dropzone.options.{{ $dropzone }} = {
         url: '{{ $store }}',
         maxFilesize: '{{ $maxFilesize }}', // MB
         acceptedFiles: '{{ $acceptedFiles }}',
@@ -38,7 +38,7 @@
             'X-CSRF-TOKEN': "{{ csrf_token() }}"
         },
         success: function (file, response) {
-            $('form').append('<input type="hidden" name="multiple_media[]" value="' + response.name + '">')
+            $('form').append('<input type="hidden" name="{{ $fileInputName }}[]" value="' + response.name + '">')
             multipleUploadMap[file.name] = response.name
         },
         removedfile: function (file) {
@@ -49,7 +49,7 @@
             } else {
                 name = multipleUploadMap[file.name]
             }
-            $('form').find('input[name="multiple_media[]"][value="' + name + '"]').remove()
+            $('form').find('input[name="{{ $fileInputName }}[]"][value="' + name + '"]').remove()
 
             $.ajaxSetup({
                 headers: {
@@ -60,7 +60,7 @@
                 type: 'DELETE',
                 url: "{{ $delete }}",
                 data: {
-                    multiple_media: name,
+                    {{ $fileInputName }}: name,
                 },
             });
         }

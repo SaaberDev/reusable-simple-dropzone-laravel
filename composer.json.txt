@@ -1,0 +1,14 @@
+/**
+ * --------------------------------------------------------------------
+ *                              NOTICE
+ * --------------------------------------------------------------------
+ *
+ * This is a demo composer file. For version information.
+ * Please make sure to modify according to your system.
+ */
+
+"require": {
+  "php": "^7.4.13|^8.0",
+  "laravel/framework": "^8.12",
+  "spatie/laravel-medialibrary": "^9.7.1",
+}
