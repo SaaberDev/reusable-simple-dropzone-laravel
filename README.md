@@ -15,7 +15,7 @@
 > 
 > 👽 Thinking about file handling process in backend ?
 > 
-> ✌ Do it yourself. However, I prefer [**Spatie Media Library**](https://spatie.be/index.php/docs/laravel-medialibrary/v9/introduction)
+> ✌ Do it yourself or use [**Spatie Media Library**](https://spatie.be/index.php/docs/laravel-medialibrary/v9/introduction). However, I prefer and using [**Spatie Media Library**](https://spatie.be/index.php/docs/laravel-medialibrary/v9/introduction)
 
 #### Feel free to contribute. Cheers ... 🍻
 
