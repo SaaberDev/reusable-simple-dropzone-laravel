@@ -35,8 +35,6 @@
                         myDropzone.options.addedfile.call(myDropzone, mockFile);
                         $('.dz-image').find('img').addClass('dz-thumb');
 
-                        $('form').append('<input type="hidden" name="multiple_media[]" value="' + value.file_name + '">');
-
                         myDropzone.options.thumbnail.call(myDropzone, mockFile, value.original_url);
 
                         // Make sure that there is no progress bar, etc...

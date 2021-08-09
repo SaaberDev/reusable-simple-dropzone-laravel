@@ -39,7 +39,7 @@
                         // myDropzone.options.addedfile.call(myDropzone, mockFile);
                         $('.dz-image').find('img').addClass('dz-thumb');
 
-                        $('form').append('<input type="hidden" name="{{ $fileInputName}}" value="' + value.file_name + '">');
+{{--                        $('form').append('<input type="hidden" name="{{ $fileInputName }}" value="' + value.file_name + '">');--}}
 
                         // myDropzone.options.thumbnail.call(myDropzone, mockFile, value.original_url);
 

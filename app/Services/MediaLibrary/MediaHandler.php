@@ -55,14 +55,6 @@
         {
             \DB::afterCommit(function () use ($model, $inputKey, $mediaCollection, $disk){
                 $medias = $model->getMedia($mediaCollection);
-                if (count($medias) > 0) {
-                    foreach ($medias as $media) {
-                        if (!in_array($media->file_name, $this->request->input($inputKey, []))) {
-                            $media->delete();
-                        }
-                    }
-                }
-
                 $stored_files = $medias->pluck('file_name')->toArray();
                 foreach ($this->request->input($inputKey, []) as $local_file) {
                     if (count($stored_files) === 0 || !in_array($local_file, $stored_files)) {
